@@ -107,7 +107,7 @@ VCS_INFO_git_getbranch () {
         gitbranch="$(< ${gitdir}/.dotest-merge/head-name)"
 
     elif gitbranch="$(${(z)gitsymref} 2> /dev/null)" ; then
-    elif gitbranch="refs/tags/$(${vcs_comm[cmd]} describe --all --exact-match HEAD 2>/dev/null)" ; then
+    elif gitbranch="refs/tags/$(${vcs_comm[cmd]} describe --all --exact-match --exclude 'branchless/*' HEAD 2>/dev/null)" ; then
     elif gitbranch="$(${vcs_comm[cmd]} describe --contains HEAD 2>/dev/null)" ; then
     ## Commented out because we don't know of a case in which 'describe --contains' fails and 'name-rev --tags' succeeds.
     #elif gitbranch="$(${vcs_comm[cmd]} name-rev --name-only --no-undefined --tags HEAD 2>/dev/null)" ; then
